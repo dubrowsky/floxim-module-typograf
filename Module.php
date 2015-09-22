@@ -1,5 +1,5 @@
 <?php
-namespace Dubr\Typograph;
+namespace Dubr\Typograf;
 
 use \Floxim\Floxim\System\Fx as fx;
 
