@@ -1,0 +1,5 @@
+{
+  "name" : "dubr/floxim-module-typograf",
+  "description" : "Floxim typograf module.",
+  "type" : "floxim-module"
+}
