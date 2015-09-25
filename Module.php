@@ -8,12 +8,15 @@ class Module extends \Floxim\Floxim\Component\Module\Entity {
         if (!fx::isAdmin()) {
             return;
         }
-        fx::page()->addJsBundle(
-            array(
-                FX_JQUERY_PATH,
-                __DIR__.'/typograf.js',
-                __DIR__.'/inline-typograf.js',
-            )
-        );
+        
+        fx::listen('before_layout_render', function($e) {
+            fx::page()->addJsFile(FX_JQUERY_PATH);
+            fx::page()->addJsBundle(
+                array(
+                    __DIR__.'/typograf.js',
+                    __DIR__.'/inline-typograf.js',
+                )
+            );
+        });
     }
 }
