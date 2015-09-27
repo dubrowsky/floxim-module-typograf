@@ -233,9 +233,15 @@ Typograf.prototype = {
                 var rlang = rule._lang;
 
                 if((rlang === 'common' || rlang === lang) && this.enabled(rule.name)) {
+                    //var pre_text = text;
                     this._onBeforeRule && this._onBeforeRule(text);
                     text = rule.func.call(this, text, this._settings[rule.name]);
                     this._onAfterRule && this._onAfterRule(text);
+                    /*
+                    if (text !== pre_text) {
+                        console.log(rule.name);
+                    }
+                    */
                 }
             },
             executeRulesForQueue = function(queue) {

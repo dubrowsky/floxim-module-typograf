@@ -5,8 +5,21 @@ $(function() {
     };
     var typograf = new Typograf(prefs);
     window.typograf = typograf;
-    typograf.disable('common/space/trimRight');
-    typograf.disable('ru/date/main');
+    
+    var disabled_rules = [
+        'common/space/trimRight',
+        'common/space/replaceTab',
+        'ru/date/main',
+        'common/space/delBeforePunctuation',
+        'common/punctuation/exclamation',
+        'common/space/afterPunctuation',
+        'ru/nbsp/but',
+        'common/punctuation/delDoublePunctuation'
+    ];
+    
+    $.each(disabled_rules, function() {
+       typograf.disable(this); 
+    });
     
     var generate_position = function(node, parent) {
         var res = [];
