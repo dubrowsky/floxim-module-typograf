@@ -10,11 +10,12 @@ class Module extends \Floxim\Floxim\Component\Module\Entity {
         }
         
         fx::listen('before_layout_render', function($e) {
+            $dir = '/module/Dubr/Typograf';
             fx::page()->addJsFile(FX_JQUERY_PATH);
             fx::page()->addJsBundle(
                 array(
-                    __DIR__.'/typograf.js',
-                    __DIR__.'/inline-typograf.js',
+                    $dir.'/typograf.js',
+                    $dir.'/inline-typograf.js',
                 )
             );
         });
