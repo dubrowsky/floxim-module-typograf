@@ -1,7 +1,7 @@
 $(function() {
     var prefs = {
-        lang: 'ru', 
-        mode:'name'
+        lang: 'ru'//, 
+        //mode:'default'
     };
     var typograf = new Typograf(prefs);
     window.typograf = typograf;
@@ -83,7 +83,16 @@ $(function() {
                 if (val === lastVal) {
                     return;
                 }
+                
+                /*setTimeout(function() {
+                    console.log($elem.html());
+                },100);*/
+                
+                var selection = window.getSelection(),
+                    range = selection.getRangeAt(0);
                     
+                range.startContainer.parentNode.normalize();
+                
                 var marker_offset = 0;
                 if (val.charCodeAt(val.length - 1) === 8203) {
                     marker_offset = 1;
@@ -98,21 +107,17 @@ $(function() {
                 
                 lastVal = res;
 
-                var selection = window.getSelection(),
-                    range = selection.getRangeAt(0),
-                    start = range.startOffset,
-                    range_node = range.startContainer;
-
-                range_node.parentNode.normalize();
-
+                
+                
+                var start = range.startOffset;
+                
                 var inv_start = range.startContainer.length - start - marker_offset;
-
+                
                 if (!range.collapsed) {
                     return;
                 }
 
                 var pos = generate_position(range.startContainer, elem);
-
 
                 $elem.html(res);
 
