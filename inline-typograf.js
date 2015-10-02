@@ -14,7 +14,15 @@ $(function() {
         'common/punctuation/exclamation',
         'common/space/afterPunctuation',
         'ru/nbsp/but',
-        'common/punctuation/delDoublePunctuation'
+        'common/punctuation/delDoublePunctuation',
+        'ru/dash/kade',
+        'ru/dash/izpod',
+        'ru/dash/izza',
+        'ru/dash/koe',
+        'ru/dash/month', // ??
+        'ru/dash/taki',
+        'ru/dash/to',
+        'ru/dash/weekday'
     ];
     
     $.each(disabled_rules, function() {
