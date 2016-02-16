@@ -22,7 +22,8 @@ $(function() {
         'ru/dash/month', // ??
         'ru/dash/taki',
         'ru/dash/to',
-        'ru/dash/weekday'
+        'ru/dash/weekday',
+        'ru/nbsp/cc' // век / в.в.
     ];
     
     $.each(disabled_rules, function() {
