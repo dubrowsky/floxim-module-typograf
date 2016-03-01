@@ -77,9 +77,26 @@ $(function() {
     };
     
     function enableTypograf($elem) {
-        var lastVal = $elem.html(),
+        var elem_is_input = $elem.is('input, textarea');
+        if (elem_is_input) {
+            var getValue = function() {
+                return $elem.val();
+            };
+            var setValue = function(val) {
+                $elem.val(val);
+            };
+        } else {
+            var getValue = function() {
+                return $elem.html();
+            };
+            var setValue = function(val) {
+                $elem.html(val);
+            };
+        }
+        
+        var lastVal = getValue(),
             elem = $elem[0];
-            
+        
         if ($elem.data('has_typograf')) {
             return;
         }
@@ -88,14 +105,14 @@ $(function() {
         
         $elem
             .on('input.typograph', function(e) {
-                var val = $elem.html();
+                var val = getValue();
                 if (val === lastVal) {
                     return;
                 }
-                
-                /*setTimeout(function() {
-                    console.log($elem.html());
-                },100);*/
+                if (val.length > 10000) {
+                    console.log('text is too long for typograph!');
+                    return;
+                }
                 
                 var selection = window.getSelection(),
                     range = selection.getRangeAt(0);
@@ -108,7 +125,7 @@ $(function() {
                     val = val.replace(/.$/, '');
                 }
                 var res = typograf.execute(val);
-
+                
                 if (res === to_entities(val)) {
                     lastVal = res;
                     return;
@@ -126,20 +143,25 @@ $(function() {
                     return;
                 }
 
-                var pos = generate_position(range.startContainer, elem);
+                if (!elem_is_input) {
+                    var pos = generate_position(range.startContainer, elem);
+                }
 
-                $elem.html(res);
+                setValue(res);
 
-                var new_node = find_by_position(pos, elem);
-                //console.log(res, pos, new_node, start, inv_start);
+                if (!elem_is_input) {
+                    var new_node = find_by_position(pos, elem);
 
-                if (new_node) {
-                    var new_range = document.createRange();
-                    new_range.setStart(new_node, new_node.length - inv_start);
-                    new_range.collapse(true);
+                    if (new_node) {
+                        var new_range = document.createRange();
+                        new_range.setStart(new_node, new_node.length - inv_start);
+                        new_range.collapse(true);
 
-                    selection.removeAllRanges();
-                    selection.addRange(new_range);
+                        selection.removeAllRanges();
+                        selection.addRange(new_range);
+                    }
+                } else {
+                    //console.log(start, range);
                 }
                     
             });
@@ -151,5 +173,17 @@ $(function() {
         if (meta) {  
             enableTypograf($(e.target));
         }
+    });
+    
+    $('html').on('fx_adm_form_created', function(e, settings) {
+        var $form = $(e.target);
+        var req = settings.request || {};
+        if (req.entity !== 'content' || req.action !== 'add_edit') {
+            return;
+        }
+        var $fields = $('.redactor_fx_wysiwyg, .fx_input_string', $form);
+        $fields.each(function() {
+            enableTypograf($(this));
+        });
     });
 });

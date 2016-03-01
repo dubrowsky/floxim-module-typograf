@@ -239,7 +239,7 @@ Typograf.prototype = {
                     this._onAfterRule && this._onAfterRule(text);
                     
                     if (text !== pre_text) {
-                        console.log(rule.name, text, pre_text);
+                        //console.log(rule.name, text, pre_text);
                     }
                     
                 }
