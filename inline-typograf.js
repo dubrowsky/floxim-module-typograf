@@ -41,7 +41,6 @@ $(function() {
             while ( sibling ) {
                 index++;
                 sibling = sibling.previousSibling;
-                //console.log(index, sibling);
             }
             res.unshift(index);
             node = node.parentNode;
@@ -175,6 +174,18 @@ $(function() {
 
                     var start = range.startOffset;
                     var inv_start = range.startContainer.length - start - marker_offset;
+                    
+                    if (isNaN(inv_start)) {
+                        console.log(
+                            'naned', 
+                            inv_start,  
+                            range.startContainer, 
+                            range.startContainer.length, 
+                            start, 
+                            marker_offset
+                        );
+                        return;
+                    }
                     
                     var pos = generate_position(range.startContainer, elem);
                     
