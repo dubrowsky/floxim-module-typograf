@@ -176,6 +176,7 @@ $(function() {
                     var inv_start = range.startContainer.length - start - marker_offset;
                     
                     if (isNaN(inv_start)) {
+                        /*
                         console.log(
                             'naned', 
                             inv_start,  
@@ -184,6 +185,7 @@ $(function() {
                             start, 
                             marker_offset
                         );
+                        */
                         return;
                     }
                     
