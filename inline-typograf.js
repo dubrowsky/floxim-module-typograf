@@ -23,7 +23,8 @@ $(function() {
         'ru/dash/taki',
         'ru/dash/to',
         'ru/dash/weekday',
-        'ru/nbsp/cc' // век / в.в.
+        'ru/nbsp/cc', // век / в.в.
+        'common/nbsp/afterNumber' // пробел между № и цифрой - дергает курсор =(
     ];
     
     $.each(disabled_rules, function() {
@@ -137,6 +138,8 @@ $(function() {
                     return;
                 }
                 
+                
+                val = val.replace(/&nbsp;([^<])/g, ' $1');
                 
                 if (elem_is_input) {
                     var res = typograf.execute(val);
