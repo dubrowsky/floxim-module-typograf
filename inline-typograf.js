@@ -138,8 +138,8 @@ $(function() {
                     return;
                 }
                 
-                
-                val = val.replace(/&nbsp;([^<])/g, ' $1');
+                // @todo: fix multiple nbsp's some more elegant way
+                //val = val.replace(/&nbsp;([^<])/g, ' $1');
                 
                 if (elem_is_input) {
                     var res = typograf.execute(val);
