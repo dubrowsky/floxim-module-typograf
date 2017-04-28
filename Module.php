@@ -10,13 +10,14 @@ class Module extends \Floxim\Floxim\Component\Module\Entity {
         }
         
         fx::listen('before_layout_render', function($e) {
-            $dir = '/module/Dubr/Typograf';
-            fx::page()->addJsFile(FX_JQUERY_PATH);
-            fx::page()->addJsBundle(
+            $dir = fx::path()->abs('/module/Dubr/Typograf');
+            fx::page()->addJs(
                 array(
+                    FX_JQUERY_PATH,
                     $dir.'/typograf.js',
                     $dir.'/inline-typograf.js',
-                )
+                ),
+                ['to' => 'admin']
             );
         });
     }
