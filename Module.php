@@ -10,10 +10,14 @@ class Module extends \Floxim\Floxim\Component\Module\Entity {
         }
         
         fx::listen('before_layout_render', function($e) {
+            
+            fx::log('in add typog');
+            
+            \Floxim\Floxim\Admin\Controller\Admin::addAdminFiles();
+            
             $dir = fx::path()->abs('/module/Dubr/Typograf');
             fx::page()->addJs(
                 array(
-                    FX_JQUERY_PATH,
                     $dir.'/typograf.js',
                     $dir.'/inline-typograf.js',
                 ),

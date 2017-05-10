@@ -1,3 +1,5 @@
+(function($) {
+
 $(function() {
     var prefs = {
         lang: 'ru'//, 
@@ -228,3 +230,5 @@ $(function() {
         });
     });
 });
+
+})($fxj);
