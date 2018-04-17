@@ -128,13 +128,13 @@ Typograf._quot = function(text, settings) {
         quotes = '[' + Typograf.data('common/quot') + ']',
         phrase = '[' + letters + ')!?.:;#*,]*?',
         reEndOpen = new RegExp('(\\s)"$'),
-        reL = new RegExp('"([…' + letters + '])', 'gi'),
+        reL = new RegExp('"([…' + letters + '#\$\{])', 'gi'),
         reR = new RegExp('(' + phrase + ')"(' + phrase + ')', 'gi'),
         reQuotes = new RegExp(quotes, 'g'),
         reFirstQuot = new RegExp('^(\s)?(' + quotes + ')', 'g'),
         reOpeningTag = new RegExp('(^|\\s)' + quotes + privateLabel, 'g'),
         reClosingTag = new RegExp(privateLabel + quotes + '([\s!?.:;#*,]|$)', 'g');
-        
+
     text = text
         .replace(reQuotes, '"')
         .replace(reEndOpen, '$1' + lquot)
