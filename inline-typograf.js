@@ -1,5 +1,6 @@
 (function($) {
 
+
 $(function() {
     var prefs = {
         lang: 'ru'//, 
